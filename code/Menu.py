@@ -1,7 +1,6 @@
 class Menu:
-    def __init__(self, window: 'Surface'):
+    def __init__(self, window):
         self.window = window
 
-    def run(self) -> None:
-        # Lógica de execução do menu
+    def run(self, window) -> None:
         pass
