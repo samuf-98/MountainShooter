@@ -1,15 +1,17 @@
-from entity import Entity
-from player import Player
-from enemy import Enemy
-from background import Background
+from code.Background import Background
+from code.const import WIN_WIDTH
+
 
 class EntityFactory:
-    def get_entity(self, entity_type: str, surf: 'Surface' = None, rect: 'Rect' = None) -> Entity:
-        if entity_type == "Player":
-            return Player(name="Player", surf=surf, rect=rect)
-        elif entity_type == "Enemy":
-            return Enemy(name="Enemy", surf=surf, rect=rect)
-        elif entity_type == "Background":
-            return Background(name="Background", surf=surf, rect=rect)
-        else:
-            raise ValueError(f"Tipo de entidade não suportado: {entity_type}")
+
+    @staticmethod
+    def get_entity(entity_name: str, position=(0,0)):
+        match entity_name:
+            case 'Level1Bg':
+                list_bg = []
+                for i in range(7):
+                    list_bg.append(Background(f'Level1Bg{i}', position=(0, 0)))
+                    list_bg.append(Background(f'Level1Bg{i}', position=(WIN_WIDTH, 0)))
+                return list_bg
+
+

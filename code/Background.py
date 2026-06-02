@@ -1,9 +1,16 @@
-from entity import Entity
+from code.Entity import Entity
+from code.const import WIN_WIDTH, ENTITY_SPEED
+
 
 class Background(Entity):
-    def __init__(self, name: str, surf: 'Surface', rect: 'Rect'):
-        super().__init__(name, surf, rect)
 
-    def move(self) -> None:
+    def __init__(self, name: str, position: tuple):
+        super().__init__(name, position)
+
+    def move(self):
         # Lógica de movimento (ou paralaxe) do cenário
-        pass
+        self.rect.centerx -= ENTITY_SPEED[self.name]
+        if self.rect.right <= 0:
+            self.rect.left = WIN_WIDTH
+
+
