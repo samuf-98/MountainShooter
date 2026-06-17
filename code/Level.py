@@ -5,6 +5,7 @@ import pygame
 
 from code.EntityFactory import EntityFactory
 from code.Entity import Entity
+from code.EntityMediator import EntityMediator
 from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME
 
 
@@ -47,6 +48,11 @@ class Level:
             self.level_text(text_size=14, text=f'entidades: {len(self.entity_list)}', text_color = COLOR_WHITE, text_pos=(10, WIN_HEIGHT - 20))
 
             pygame.display.flip()
+
+            #Collisions
+            EntityMediator.verify_collision(entity_list=self.entity_list) #Chamar o metodo de verificar colisao do Mediator
+            EntityMediator.verify_health(entity_list=self.entity_list) #Chamar o metodo de verificar vida do Mediator
+
         pass
 
 
