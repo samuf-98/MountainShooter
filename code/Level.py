@@ -6,6 +6,8 @@ import pygame
 from code.EntityFactory import EntityFactory
 from code.Entity import Entity
 from code.EntityMediator import EntityMediator
+from code.Player import Player
+from code.Enemy import Enemy
 from code.const import COLOR_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME
 
 
@@ -21,7 +23,6 @@ class Level:
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
 
 
-
     def run(self):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
         pygame.mixer_music.play(-1)
@@ -32,6 +33,10 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
+                if isinstance(ent, (Player, Enemy)):
+                    shoot = ent.shoot()
+                    if shoot is not None:
+                        self.entity_list.append(shoot)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
