@@ -7,9 +7,11 @@ from code.const import ENTITY_SPEED, WIN_HEIGHT, WIN_WIDTH, PLAYER_KEY_SHOOT, EN
 
 class Player(Entity):
 
+    #04.03 - Tiros - INICIO
     def __init__(self, name: str, position: tuple): #metodo construtor
         super().__init__(name, position) #herda nome e posicao da classe pai
         self.shot_delay = ENTITY_SHOT_DELAY[self.name] #cria uma propriedade shot_delay que recebe uma constante que vai puxar o valor (20) pelo nome que está na constante
+    #04.03 - Tiros - FIM
 
 
     def move(self):
@@ -29,10 +31,16 @@ class Player(Entity):
 
         pass
 
+    #04.03 - Tiros - INICIO
     def shoot(self):
-        pressed_key = pygame.key.get_pressed()
-        if pressed_key[PLAYER_KEY_SHOOT[self.name]]:
-            PlayerShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery))
+        self.shot_delay -= 1
+        if self.shot_delay == 0:
+            self.shot_delay = ENTITY_SHOT_DELAY[self.name]
+            pressed_key = pygame.key.get_pressed()
+            if pressed_key[PLAYER_KEY_SHOOT[self.name]]:
+                return PlayerShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery))
+
+    #04.03 - Tiros - FIM
 
 
 

@@ -4,12 +4,14 @@ import pygame
 C_ORANGE = (255, 128, 0)
 C_WHITE = (255, 255, 255)
 C_YELLOW = (255, 255, 0)
-C_GREEN = (0, 128, 0) #05.03
-C_CYAN = (0, 128, 128) #05.03
+C_GREEN = (0, 128, 0) #06.03
+C_CYAN = (0, 128, 128) #06.03
 
 #E
 
 EVENT_ENEMY = pygame.USEREVENT + 1
+
+EVENT_TIMEOUT = pygame.USEREVENT + 2 #07.02
 
 
 ENTITY_DAMAGE = { #05.02
@@ -20,6 +22,11 @@ ENTITY_DAMAGE = { #05.02
     'Level1Bg4' : 0,
     'Level1Bg5' : 0,
     'Level1Bg6' : 0,
+    'Level2Bg0' : 0, #07.03
+    'Level2Bg1' : 0, #07.03
+    'Level2Bg2' : 0, #07.03
+    'Level2Bg3' : 0, #07.03
+    'Level2Bg4' : 0, #07.03
     'Player1' : 1,
     'Player1Shot': 25,
     'Enemy1' : 1,
@@ -36,11 +43,16 @@ ENTITY_SCORE = {
     'Level1Bg4' : 0,
     'Level1Bg5' : 0,
     'Level1Bg6' : 0,
+    'Level2Bg0' : 0, #07.03
+    'Level2Bg1' : 0, #07.03
+    'Level2Bg2' : 0, #07.03
+    'Level2Bg3' : 0, #07.03
+    'Level2Bg4' : 0, #07.03
     'Player1' : 0,
     'Player1Shot' : 0,
-    'Enemy1': 100,
+    'Enemy1': 100, #06.03
     'Enemy1Shot': 0,
-    'Enemy2': 125,
+    'Enemy2': 125, #06.03
     'Enemy2Shot': 0
 }
 
@@ -52,8 +64,13 @@ ENTITY_SPEED = {
     'Level1Bg4' : 4,
     'Level1Bg5' : 5,
     'Level1Bg6' : 6,
+    'Level2Bg0' : 0, #07.03
+    'Level2Bg1' : 1, #07.03
+    'Level2Bg2' : 2, #07.03
+    'Level2Bg3' : 3, #07.03
+    'Level2Bg4' : 4, #07.03
     'Player1' : 3,
-    'Player1Shot': 5,
+    'Player1Shot': 5, #04.03
     'Enemy1' : 2,
     'Enemy1Shot': 5,
     'Enemy2' : 1,
@@ -68,6 +85,11 @@ ENTITY_HEALTH = {
     'Level1Bg4' : 999,
     'Level1Bg5' : 999,
     'Level1Bg6' : 999,
+    'Level2Bg0' : 999, #07.03
+    'Level2Bg1' : 999, #07.03
+    'Level2Bg2' : 999, #07.03
+    'Level2Bg3' : 999, #07.03
+    'Level2Bg4' : 999, #07.03
     'Player1' : 300,
     'Player1Shot': 1,
     'Enemy1': 50,
@@ -90,13 +112,19 @@ MENU_OPTION = ( 'NEW GAME 1P',
                 'EXIT')
 
 #P
+PLAYER_KEY_UP = {'Player1' : pygame.K_UP}
+PLAYER_KEY_DOWN = {'Player1' : pygame.K_DOWN}
+PLAYER_KEY_LEFT = {'Player1' : pygame.K_LEFT}
+PLAYER_KEY_RIGHT = {'Player1' : pygame.K_RIGHT}
 
-PLAYER_KEY_SHOOT = {
-    'Player1' : pygame.K_k,
-}
+PLAYER_KEY_SHOOT = {'Player1' : pygame.K_RCTRL}
 
 #S
-SPAWN_TIME = 4000
+SPAWN_TIME = 1000
+
+#T
+TIMEOUT_STEP = 100
+TIMEOUT_LEVEL = 30000
 
 #W
 WIN_WIDTH = 576

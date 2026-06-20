@@ -47,17 +47,14 @@ class EntityMediator:
                 ent2.last_dmg = ent1.name
     #05.02 - FIM
 
-    #05.03 - INICIO
+    #06.03 - INICIO
     @staticmethod
     def __give_score(enemy: Enemy, entity_list: list[Entity]): #Metodo para pontuar no score, que receberá como parametros o Enemy e uma lista (Entity)
         if enemy.last_dmg == 'Player1Shot': #Verifica quem deu o ultimo damage na entidade foi o player 1
             for ent in entity_list: #busca as entidades na lista 'entity_list'
                 if ent.name == 'Player1': #verifica se a entidade atual é o 'Player1'
                     ent.score += enemy.score #quando for o 'Player1' soma o enemy.score a ent.score
-
-    #05.03 - FIM
-
-
+    #06.03 - FIM
 
 
     #05.01 - INICIO
@@ -77,6 +74,24 @@ class EntityMediator:
     def verify_health(entity_list: list[Entity]): #Metodo para verificar a vida das entidades
         for ent in entity_list:
             if ent.health <= 0:
+                #06.03 - INICIO
+                if isinstance(ent, Enemy): #se a entidade for do tipo Enemy, faça...
+                    EntityMediator.__give_score(ent, entity_list) #chama o metodo 'give_score' e passe os parametros ent e entity_list
+                #06.03 - FIM
                 entity_list.remove(ent)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

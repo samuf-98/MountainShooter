@@ -2,6 +2,8 @@ from code.Entity import Entity
 from code.const import ENTITY_SPEED
 
 
+# 04.03 - Tiros - INICIO
+
 class PlayerShot(Entity): #Classe pai Entity
 
     def __init__(self, name: str, position: tuple): #Metodo construtor da classe PlayerShot
@@ -9,3 +11,5 @@ class PlayerShot(Entity): #Classe pai Entity
 
     def move(self):
         self.rect.centerx += ENTITY_SPEED[self.name] #centerx para o tiro ir reto
+
+# 04.03 - Tiros - FIM

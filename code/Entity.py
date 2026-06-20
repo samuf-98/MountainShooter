@@ -13,7 +13,7 @@ class Entity(ABC):
         self.speed = 0
         self.health = ENTITY_HEALTH[self.name]
         self.damage = ENTITY_DAMAGE[self.name] #05.02
-        self.score = ENTITY_SCORE[self.name] #05.03
+        self.score = ENTITY_SCORE[self.name] #06.03
         self.last_dmg = 'None' #05.02
 
     @abstractmethod
