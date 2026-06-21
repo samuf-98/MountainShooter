@@ -1,3 +1,5 @@
+import sys
+
 import pygame.image
 from pygame import Surface, Rect
 from pygame.examples.moveit import WIDTH
@@ -34,7 +36,7 @@ class Menu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit() #close window
-                    quit() #end pygame
+                    sys.exit() #end pygame
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN: # DOWN KEY

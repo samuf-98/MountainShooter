@@ -2,18 +2,19 @@ import pygame
 
 from code.Level import Level
 from code.Menu import Menu
+from code.Score import Score
 from code.const import WIN_WIDTH, WIN_HEIGHT, MENU_OPTION
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, score=None):
         pygame.init()
         self.window = pygame.display.set_mode(size=(WIN_WIDTH, WIN_HEIGHT))
 
     def run(self):
 
         while True:
-
+            score = Score(self.window) #08.01.03
             menu = Menu(self.window)
             menu_return = menu.run()
 
@@ -27,11 +28,28 @@ class Game:
                     level = Level(self.window, 'Level2', level_return, player_score) #A variavel 'level' recebe a fase 2
                     level_return = level.run(player_score) #A variavel 'level_return' recebe o metodo 'level.run' e inicia a fase 2
                 #07.02 - Criar Fase 2 - FIM
+                    #08.01.04 - INICIO
+                    if level_return:
+                        score.save(menu_return, player_score)
+                    #08.01.04 - FIM
+            #08.01.03 - INICIO
+            elif menu_return == MENU_OPTION[3]:
+                score.show()
+            #08.01.03 - FIM
+                
             elif menu_return == MENU_OPTION[4]:
                 pygame.quit()
                 quit()
             else:
                 pass
+
+
+
+
+
+
+
+
 
 
 
